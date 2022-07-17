@@ -1,0 +1,74 @@
+#保持地址
+dir=C:\Users\scien\Downloads
+#RPC
+enable-rpc 
+rpc-listen-all 
+# BitTorrent
+# 启用本地节点查找，默认 false，如果种子设置为 private ， aria2 不会使用此选项
+bt-enable-lpd = true
+# 当值为 true| mem 时，如果下载的文件是一个种子(以.torrent结尾)时, 就自动下载
+# 当值为 mem 时，种子不会写入磁盘，但会一直在内存中
+# 当值为 false 时不自动下载
+#  默认 true
+follow-torrent = true
+# 监听端口，默认6881-6999
+# , 为分隔不同端口， - 为两个值中的所有端口，如：'6881-6889,6999', '6881,6885'
+#listen-port = <PORT>...
+
+# 强制加密，开启相当于 bt-require-crypto = true 和 bt-min-crypto-level = arc4 ，默认 false
+#bt-force-encryption = true
+# 要求加密，默认 false
+#bt-require-crypto = true
+# 最低加密级别，可用值 plain, arc4 ，默认 plain
+#bt-min-crypto-level = arc4
+
+# 最大打开文件数量，默认 100
+#bt-max-open-files = 100
+# 单种子最大连接数，默认 55 ，0 为不限制
+#bt-max-peers = 55
+# 如果单种子的速度低于此值， aria2 会暂时增加种子的连接数量来增加下载速度，默认 50K
+#bt-request-peer-speed-limit = 50K
+
+#添加额外的 tracker
+bt-tracker=@@@
+#要排除的 tracker，可以使用值 '*' （不要引号），当使用 * 时会移除所有通告的的 tracker
+bt-exclude-tracker = ###
+# tracker 重连超时时间（单位为秒），默认 60
+bt-tracker-connect-timeout = 30
+#tracker 超时时间（单位为秒），默认 60
+bt-tracker-timeout = 30
+
+# DHT
+# 打开 ipv4 DHT， 默认 true
+# 当种子文件设置了 private ，即使为 true ，aria2也不会从 DHT 中下载， ipv6 也一样
+enable-dht = true
+# 打开 ipv6 DHT，默认 true
+enable-dht6 = true
+# BT 和 DHT 使用的外部 IP ，可能会发送到BitTorrent tracker
+# 对于DHT，此选项应该被设置成要报告的本地节点，这对于在 private 网络中使用 DHT 很重要
+# For DHT, this option should be set to report that local node is downloading a particular torrent. This is critical to use DHT in a private network
+#bt-external-ip = <IPADDRESS>
+# DHT和 UDP tracker监听端口，默认 6881-6999
+#dht-listen-port = <PORT>...
+# 启用种子交换，默认 true ，如果种子设置为 private ，即使为 true 也不会启用这个特性
+enable-peer-exchange = true
+# 做种流量比例， 0.0 时一直做种，默认 1.0
+#seed-ratio = 0.0
+
+# 修改 UA，默认 aria2/$VERSION
+# 只在 HTTP(S) 中有效
+#user-agent = <USER_AGENT>
+# peer-id，默认 A2-$MAJOR-$MINOR-$PATCH- ，比如在 aria2 version 1.18.8 里为 A2-1-18-8-
+# 在 BT 中只有前20个字符长度生效，超出的将被丢弃，不足则随机填充至20个字符
+#peer-id-prefix = <PEER_ID_PREFIX>
+
+# 保存元数据至 .torrent 文件，默认 false
+bt-save-metadata = true
+# 从以前的种子下载不用验证散列，默认 false
+# Seed previously downloaded files without verifying piece hashes
+#bt-seed-unverified = true
+# 种子哈希效验，开启时使用 check-integrity 选项和文件完成散列检查后才会继续，如果你想要下到损坏的文件那就关了吧。默认 true
+# If true is given, after hash check using --check-integrity option and file is complete, continue to seed file. If you want to check file and download it only when it is damaged or incomplete, set this option to false. This option has effect only on BitTorrent download. Default: true
+#bt-hash-check-seed = true
+# 通过验证散列或整个文件的哈希值来检查文件完整性，只在 BT 中生效，HTTP(S)/FTP 使用 checksum 选项，默认 false
+check-integrity = true

@@ -1,0 +1,6 @@
+[submodule "trackerslist"]
+	path = trackerslist
+	url = git@github.com:ngosang/trackerslist.git
+[submodule "webui-aria2"]
+	path = webui-aria2
+	url = git@github.com:ziahamza/webui-aria2.git
